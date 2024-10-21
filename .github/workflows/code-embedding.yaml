@@ -1,0 +1,14 @@
+name: Code Embedder
+
+on:
+  push:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Embed Code
+        uses: kvankova/code-embedder@0.2.1
+        with:
+          EMBED_TOKEN: ${{ secrets.EMBED_TOKEN }}

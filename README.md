@@ -51,7 +51,7 @@ that has the signature explained in sections down below.
 
 ### Usage Example (🤸 Gymnasium)
 The example loop for running the game looks like this
-```python
+```python:examples/gymnasium_example.py
 import gymnasium as gym
 from generals.agents import RandomAgent, ExpanderAgent # import your agent
 
