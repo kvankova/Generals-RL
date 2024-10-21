@@ -53,7 +53,8 @@ that has the signature explained in sections down below.
 The example loop for running the game looks like this
 ```python:examples/gymnasium_example.py
 import gymnasium as gym
-from generals.agents import RandomAgent, ExpanderAgent # import your agent
+
+from generals.agents import RandomAgent, ExpanderAgent
 
 # Initialize agents
 agent = RandomAgent()
@@ -68,6 +69,7 @@ while not (terminated or truncated):
     action = agent.act(observation)
     observation, reward, terminated, truncated, info = env.step(action)
     env.render()
+
 ```
 
 > [!TIP]
