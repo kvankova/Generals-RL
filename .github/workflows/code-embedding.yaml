@@ -12,6 +12,6 @@ jobs:
           fetch-depth: 1
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Embed Code
-        uses: kvankova/code-embedder@0.2.2
+        uses: kvankova/code-embedder@0.0.1
         env:
           EMBED_TOKEN: ${{ secrets.EMBED_TOKEN }}
