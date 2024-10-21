@@ -8,7 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Embed Code
         uses: kvankova/code-embedder@0.2.1
-        with:
+        env:
           EMBED_TOKEN: ${{ secrets.EMBED_TOKEN }}
