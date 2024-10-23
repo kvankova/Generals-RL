@@ -13,5 +13,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Embed Code
         uses: kvankova/code-embedder@0.0.1
+        with:
+          readme_path: generals/README.md
         env:
           EMBED_TOKEN: ${{ secrets.EMBED_TOKEN }}
