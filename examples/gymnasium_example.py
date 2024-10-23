@@ -15,4 +15,3 @@ while not (terminated or truncated):
     action = agent.act(observation)
     observation, reward, terminated, truncated, info = env.step(action)
     env.render()
-#print meow
