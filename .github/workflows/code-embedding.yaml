@@ -16,4 +16,4 @@ jobs:
         with:
           readme_path: generals/README.md
         env:
-          EMBED_TOKEN: ${{ secrets.EMBED_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.EMBED_TOKEN }}
