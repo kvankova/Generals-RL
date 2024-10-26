@@ -14,6 +14,6 @@ jobs:
       - name: Embed Code
         uses: kvankova/code-embedder@v0.2.0
         with:
-          readme_path: generals/README.md
+          readme_paths: generals/README.md
         env:
           GITHUB_TOKEN: ${{ secrets.EMBED_TOKEN }}
