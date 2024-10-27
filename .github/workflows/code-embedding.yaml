@@ -12,8 +12,6 @@ jobs:
           fetch-depth: 1
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Embed Code
-        uses: kvankova/code-embedder@v0.2.0
-        with:
-          readme_paths: generals/README.md
+        uses: kvankova/code-embedder@v0.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.EMBED_TOKEN }}
