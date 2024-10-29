@@ -56,11 +56,11 @@ The example loop for running the game looks like this
 import gymnasium as gym
 
 from generals.agents import RandomAgent, ExpanderAgent
-
+# code_embedder:A start
 # Initialize agents
 agent = RandomAgent()
 npc = ExpanderAgent()
-
+# code_embedder:A end
 # Create environment
 env = gym.make("gym-generals-v0", agent=agent, npc=npc, render_mode="human")
 
@@ -74,6 +74,9 @@ while not (terminated or truncated):
 ```
 
 ```python:examples/gymnasium_example.py:A
+# Initialize agents
+agent = RandomAgent()
+npc = ExpanderAgent()
 ```
 > [!TIP]
 > Check out [Wiki](https://github.com/strakam/generals-bots/wiki) for more commented examples to get a better idea on how to start 🤗.
