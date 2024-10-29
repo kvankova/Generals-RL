@@ -73,6 +73,8 @@ while not (terminated or truncated):
 
 ```
 
+```python:examples/gymnasium_example.py:A
+```
 > [!TIP]
 > Check out [Wiki](https://github.com/strakam/generals-bots/wiki) for more commented examples to get a better idea on how to start 🤗.
 
