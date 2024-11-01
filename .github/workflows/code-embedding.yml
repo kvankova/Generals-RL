@@ -3,9 +3,6 @@ name: Code Embedder
 on:
   push:
 
-permissions:
-  contents: write
-
 jobs:
   check:
     runs-on: ubuntu-latest
