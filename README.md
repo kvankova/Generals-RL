@@ -53,7 +53,13 @@ that has the signature explained in sections down below.
 ### Usage Example (🤸 Gymnasium)
 The example loop for running the game looks like this
 ```python:examples/gymnasium_example.py
-int()
+import gymnasium as gym
+
+from generals.agents import RandomAgent, ExpanderAgent
+# code_embedder:A start
+# Initialize agents
+agent = RandomAgent()
+npc = ExpanderAgent()
 # code_embedder:A end
 # Create environment
 env = gym.make("gym-generals-v0", agent=agent, npc=npc, render_mode="human")
