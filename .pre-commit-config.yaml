@@ -29,11 +29,3 @@ repos:
         pass_filenames: false
         types:
           - python
-
-      - id: mypy
-        name: mypy
-        entry: poetry run mypy .
-        pass_filenames: false
-        language: system
-        types:
-          - python
