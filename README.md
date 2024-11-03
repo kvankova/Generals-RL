@@ -8,7 +8,12 @@ that has the signature explained in sections down below.
 ### Usage Example (🤸 Gymnasium)
 The example loop for running the game looks like this
 ```python:examples/gymnasium_example.py
-import
+import gymnasium as gym
+
+from generals.agents import RandomAgent, ExpanderAgent
+# code_embedder:A start
+# Initialize agents
+agent = RandomAgent()
 npc = ExpanderAgent()
 # code_embedder:A end
 # Create environment
@@ -21,10 +26,33 @@ while not (terminated or truncated):
     observation, reward, terminated, truncated, info = env.step(action)
     env.render()
 
+
+def main():
+    """Main function to run the game."""
+    # Initialize agents
+    agent = RandomAgent()
+    npc = ExpanderAgent()
+    # Create environment
+
+    env = gym.make("gym-generals-v0", agent=agent, npc=npc, render_mode="human")
+    return env
+
 ```
 
 ```python:examples/gymnasium_example.py:A
+# Initialize agents
+agent = RandomAgent()
+npc = ExpanderAgent()
 ```
 
 ```python:examples/gymnasium_example.py:main
+def main():
+    """Main function to run the game."""
+    # Initialize agents
+    agent = RandomAgent()
+    npc = ExpanderAgent()
+    # Create environment
+
+    env = gym.make("gym-generals-v0", agent=agent, npc=npc, render_mode="human")
+    return env
 ```
