@@ -11,6 +11,10 @@ agents = {
     expander.id: expander,
 }
 
+
+
+
+ksksks
 # Create environment
 env = PettingZooGenerals(agents=agents, render_mode="human")
 observations, info = env.reset()
