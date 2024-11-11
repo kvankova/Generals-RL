@@ -1,10 +1,10 @@
-import pygame
-import numpy as np
-
-from generals.gui.properties import Properties, GuiMode
-from generals.core.config import Dimension, Path
-
 from typing import TypeAlias
+
+import numpy as np
+import pygame
+
+from generals.core.config import Dimension, Path
+from generals.gui.properties import GuiMode, Properties
 
 Color: TypeAlias = tuple[int, int, int]
 FOG_OF_WAR: Color = (70, 73, 76)
@@ -48,9 +48,7 @@ class Renderer:
         height = Dimension.GUI_CELL_HEIGHT.value
 
         # Main window
-        self.screen = pygame.display.set_mode(
-            (window_width, window_height), pygame.HWSURFACE | pygame.DOUBLEBUF
-        )
+        self.screen = pygame.display.set_mode((window_width, window_height), pygame.HWSURFACE | pygame.DOUBLEBUF)
         # Scoreboard
         self.right_panel = pygame.Surface((self.right_panel_width, window_height))
         self.score_cols = {}
@@ -65,25 +63,14 @@ class Renderer:
             "speed": pygame.Surface((self.right_panel_width / 2, height)),
         }
         # Game area and tiles
-        self.game_area = pygame.Surface(
-            (self.display_grid_width, self.display_grid_height)
-        )
+        self.game_area = pygame.Surface((self.display_grid_width, self.display_grid_height))
         self.tiles = [
-            [
-                pygame.Surface(
-                    (Dimension.SQUARE_SIZE.value, Dimension.SQUARE_SIZE.value)
-                )
-                for _ in range(self.grid_width)
-            ]
+            [pygame.Surface((Dimension.SQUARE_SIZE.value, Dimension.SQUARE_SIZE.value)) for _ in range(self.grid_width)]
             for _ in range(self.grid_height)
         ]
 
-        self._mountain_img = pygame.image.load(
-            str(Path.MOUNTAIN_PATH), "png"
-        ).convert_alpha()
-        self._general_img = pygame.image.load(
-            str(Path.GENERAL_PATH), "png"
-        ).convert_alpha()
+        self._mountain_img = pygame.image.load(str(Path.MOUNTAIN_PATH), "png").convert_alpha()
+        self._general_img = pygame.image.load(str(Path.GENERAL_PATH), "png").convert_alpha()
         self._city_img = pygame.image.load(Path.CITY_PATH, "png").convert_alpha()
 
         self._font = pygame.font.Font(Path.FONT_PATH, self.properties.font_size)
@@ -113,10 +100,10 @@ class Renderer:
         """
         center = (cell.get_width() // 2, cell.get_height() // 2)
 
-        text = self._font.render(text, True, fg_color)
+        text_surface = self._font.render(text, True, fg_color)
         if bg_color:
             cell.fill(bg_color)
-        cell.blit(text, text.get_rect(center=center))
+        cell.blit(text_surface, text_surface.get_rect(center=center))
 
     def render_stats(self):
         """
@@ -177,9 +164,7 @@ class Renderer:
             )
             pygame.draw.rect(self.info_panel[key], BLACK, rect_dim, 1)
 
-            self.right_panel.blit(
-                self.info_panel[key], (i * 2 * gui_cell_width, 3 * gui_cell_height)
-            )
+            self.right_panel.blit(self.info_panel[key], (i * 2 * gui_cell_width, 3 * gui_cell_height))
         # Render right_panel on the screen
         self.screen.blit(self.right_panel, (self.display_grid_width, 0))
 
@@ -195,7 +180,7 @@ class Renderer:
             ownership = self.game.channels.ownership[agent]
             owned_map = np.logical_or(owned_map, ownership)
             if self.agent_fov[agent]:
-                visibility = self.game.visibility_channel(ownership)
+                visibility = self.game.channels.get_visibility(agent)
                 visible_map = np.logical_or(visible_map, visibility)
 
         # Helper maps for not owned and invisible cells
@@ -209,7 +194,7 @@ class Renderer:
             self.draw_channel(visible_ownership, self.agent_data[agent]["color"])
 
         # Draw visible generals
-        visible_generals = np.logical_and(self.game.channels.general, visible_map)
+        visible_generals = np.logical_and(self.game.channels.generals, visible_map)
         self.draw_images(visible_generals, self._general_img)
 
         # Draw background of visible but not owned squares
@@ -220,29 +205,27 @@ class Renderer:
         self.draw_channel(invisible_map, FOG_OF_WAR)
 
         # Draw background of visible mountains
-        visible_mountain = np.logical_and(self.game.channels.mountain, visible_map)
+        visible_mountain = np.logical_and(self.game.channels.mountains, visible_map)
         self.draw_channel(visible_mountain, VISIBLE_MOUNTAIN)
 
         # Draw mountains (even if they are not visible)
-        self.draw_images(self.game.channels.mountain, self._mountain_img)
+        self.draw_images(self.game.channels.mountains, self._mountain_img)
 
         # Draw background of visible neutral cities
-        visible_cities = np.logical_and(self.game.channels.city, visible_map)
-        visible_cities_neutral = np.logical_and(
-            visible_cities, self.game.channels.ownership_neutral
-        )
+        visible_cities = np.logical_and(self.game.channels.cities, visible_map)
+        visible_cities_neutral = np.logical_and(visible_cities, self.game.channels.ownership_neutral)
         self.draw_channel(visible_cities_neutral, NEUTRAL_CASTLE)
 
         # Draw invisible cities as mountains
-        invisible_cities = np.logical_and(self.game.channels.city, invisible_map)
+        invisible_cities = np.logical_and(self.game.channels.cities, invisible_map)
         self.draw_images(invisible_cities, self._mountain_img)
 
         # Draw visible cities
         self.draw_images(visible_cities, self._city_img)
 
         # Draw nonzero army counts on visible squares
-        visible_army = self.game.channels.army * visible_map
-        visible_army_indices = self.game.channel_to_indices(visible_army)
+        visible_army = self.game.channels.armies * visible_map
+        visible_army_indices = self.channel_to_indices(visible_army)
         for i, j in visible_army_indices:
             self.render_cell_text(
                 self.tiles[i][j],
@@ -257,12 +240,18 @@ class Renderer:
             self.game_area.blit(self.tiles[i][j], (j * square_size, i * square_size))
         self.screen.blit(self.game_area, (0, 0))
 
+    def channel_to_indices(self, channel: np.ndarray) -> np.ndarray:
+        """
+        Returns a list of indices of cells with non-zero values from specified a channel.
+        """
+        return np.argwhere(channel != 0)
+
     def draw_channel(self, channel: np.ndarray, color: Color):
         """
         Draw background and borders (left and top) for grid tiles of a given channel
         """
         square_size = Dimension.SQUARE_SIZE.value
-        for i, j in self.game.channel_to_indices(channel):
+        for i, j in self.channel_to_indices(channel):
             self.tiles[i][j].fill(color)
             pygame.draw.line(self.tiles[i][j], BLACK, (0, 0), (0, square_size), 1)
             pygame.draw.line(self.tiles[i][j], BLACK, (0, 0), (square_size, 0), 1)
@@ -271,5 +260,5 @@ class Renderer:
         """
         Draw images on grid tiles of a given channel
         """
-        for i, j in self.game.channel_to_indices(channel):
+        for i, j in self.channel_to_indices(channel):
             self.tiles[i][j].blit(image, (3, 2))

@@ -1,21 +1,21 @@
-import gymnasium as gym
-from generals.agents import AgentFactory
+from generals.agents import RandomAgent, ExpanderAgent
+from generals.envs import PettingZooGenerals
 
 # Initialize agents
-random = AgentFactory.make_agent("random")
-expander = AgentFactory.make_agent("expander")
+random = RandomAgent()
+expander = ExpanderAgent()
 
+# Store agents in a dictionary
 agents = {
     random.id: random,
     expander.id: expander,
-}  # Environment calls agents by name
+}
 
-# Create environment -- render modes: {None, "human"}
-env = gym.make("pz-generals-v0", agents=list(agents.keys()), render_mode="human")
+# Create environment
+env = PettingZooGenerals(agents=agents, render_mode="human")
 observations, info = env.reset()
 
 done = False
-
 while not done:
     actions = {}
     for agent in env.agents:

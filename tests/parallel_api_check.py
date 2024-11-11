@@ -1,18 +1,20 @@
 from __future__ import annotations
-from generals import GridFactory, AgentFactory
+
 import warnings
 
-import numpy as np
 import gymnasium as gym
-
+import numpy as np
 from pettingzoo.test.api_test import missing_attr_warning
 from pettingzoo.utils.conversions import (
     aec_to_parallel_wrapper,
     parallel_to_aec_wrapper,
     turn_based_aec_to_parallel_wrapper,
 )
+from generals.envs import PettingZooGenerals
 from pettingzoo.utils.env import ActionType, AgentID, ObsType, ParallelEnv
 from pettingzoo.utils.wrappers import BaseWrapper
+
+from generals import AgentFactory, GridFactory
 
 
 def sample_action(
@@ -27,12 +29,22 @@ def sample_action(
         # pick random index of the mask with a 1, it should be 3 numbers
         valid_actions = np.argwhere(mask == 1)
         if len(valid_actions) == 0:
-            return (1, np.array([0,0]), 0, 0)
+            return {
+                "pass": 1,
+                "cell": np.array([0, 0]),
+                "direction": 0,
+                "split": 0,
+            }
         action_index = np.random.choice(len(valid_actions))
         action = valid_actions[action_index]
         cell = action[:2]
         direction = action[2]
-        return (0, cell, direction, 0)
+        return {
+            "pass": 0,
+            "cell": cell,
+            "direction": direction,
+            "split": 0,
+        }
     return env.action_space(agent).sample()
 
 
@@ -67,10 +79,7 @@ def parallel_api_test(par_env: ParallelEnv, num_cycles=1000):
             actions = {
                 agent: sample_action(par_env, obs, agent)
                 for agent in par_env.agents
-                if (
-                    (agent in terminated and not terminated[agent])
-                    or (agent in truncated and not truncated[agent])
-                )
+                if ((agent in terminated and not terminated[agent]) or (agent in truncated and not truncated[agent]))
             }
             obs, rew, terminated, truncated, info = par_env.step(actions)
             for agent in par_env.agents:
@@ -101,15 +110,9 @@ def parallel_api_test(par_env: ParallelEnv, num_cycles=1000):
                     set(par_env.possible_agents)
                 ), "possible_agents defined but does not contain all agents"
 
-                has_finished |= {
-                    agent
-                    for agent in live_agents
-                    if terminated[agent] or truncated[agent]
-                }
+                has_finished |= {agent for agent in live_agents if terminated[agent] or truncated[agent]}
                 if not par_env.agents and has_finished != set(par_env.possible_agents):
-                    warnings.warn(
-                        "No agents present but not all possible_agents are terminated or truncated"
-                    )
+                    warnings.warn("No agents present but not all possible_agents are terminated or truncated")
             elif not par_env.agents:
                 warnings.warn("No agents present")
 
@@ -124,31 +127,28 @@ def parallel_api_test(par_env: ParallelEnv, num_cycles=1000):
                 (ensures that action space seeding works as expected). Consider decorating your action_space(self, agent)\
                 method with @functools.lru_cache(maxsize=None)"
 
-            agents_to_remove = {
-                agent for agent in live_agents if terminated[agent] or truncated[agent]
-            }
+            agents_to_remove = {agent for agent in live_agents if terminated[agent] or truncated[agent]}
             live_agents -= agents_to_remove
 
-            assert (
-                set(par_env.agents) == live_agents
-            ), f"{par_env.agents} != {live_agents}"
+            assert set(par_env.agents) == live_agents, f"{par_env.agents} != {live_agents}"
 
             if len(live_agents) == 0:
                 break
     print(f"Total cycles: {t}")
     print("Passed Parallel API test")
 
+
 if __name__ == "__main__":
-    mapper = GridFactory()
-    agent1 = AgentFactory.make_agent("expander", id="A")
-    agent2 = AgentFactory.make_agent("random", id="B")
+    agent1 = AgentFactory.make_agent("Expander", id="A")
+    agent2 = AgentFactory.make_agent("Random", id="B")
     agents = {
         agent1.id: agent1,
         agent2.id: agent2,
     }
-    env = gym.make("pz-generals-v0", agents=list(agents.keys()), grid_factory=mapper)
+    env = PettingZooGenerals(agents=agents, render_mode=None)
     # test the environment with parallel_api_test
     import time
+
     start = time.time()
     n_cycles = 1000
     parallel_api_test(env, num_cycles=n_cycles)

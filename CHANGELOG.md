@@ -1,5 +1,114 @@
 # Changelog
 
+## [2.0.1](https://github.com/strakam/generals-bots/compare/v2.0.0...v2.0.1) (2024-10-29)
+
+
+### 🐛 Bug Fixes
+
+* Align priority moves with generalsio ([0b87dea](https://github.com/strakam/generals-bots/commit/0b87deaf6d91480e8a730a27717d5a81606ee2c3))
+* Make online observations include priority ([5000702](https://github.com/strakam/generals-bots/commit/5000702a99983a540215cb7b74327caff55f932f))
+
+## [2.0.0](https://github.com/strakam/generals-bots/compare/v1.0.0...v2.0.0) (2024-10-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **generalsio:** Update docs with deployment comments
+
+### 🚀 Features
+
+* Add client autopilot mode ([6c1f6e6](https://github.com/strakam/generals-bots/commit/6c1f6e61b47211fe3ae29d914516b4ae442f6114))
+* First game between human and bot made by this repo! ([5f504ec](https://github.com/strakam/generals-bots/commit/5f504ec744f24060a2ed2fd38405d81cca3b4acd))
+* **generalsio:** Add patch parsing ([39b30d0](https://github.com/strakam/generals-bots/commit/39b30d0a14b7fe664a1b5465f2421f161cc8eed8))
+* **generalsio:** handle basic game progress ([5457624](https://github.com/strakam/generals-bots/commit/545762418ca01b2fc0757f1991f61d3b52acfd95))
+* **generalsio:** implement GeneralsIO client ([0ca4c43](https://github.com/strakam/generals-bots/commit/0ca4c4391a386bb88c9bd5a48cbff20222942ed9))
+* **generalsio:** read agent index ([68a10b5](https://github.com/strakam/generals-bots/commit/68a10b5e5337eb872913e484ecf5cf566f100eef))
+* **generalsio:** read game updates ([e643ee6](https://github.com/strakam/generals-bots/commit/e643ee682083e287dec53fe847be3a17abe43494))
+
+
+### 🐛 Bug Fixes
+
+* Fix deterministicity.. seeds now work properly ([d56c63c](https://github.com/strakam/generals-bots/commit/d56c63c1b17590882246210ce270cc6443c68671))
+* Generals are now generated sufficiently apart, with free path between them ([ccbb1dc](https://github.com/strakam/generals-bots/commit/ccbb1dc3a01e9fd28e1a28cc890324977babdb17))
+* Make truncation as a parameter to the env ([8af020e](https://github.com/strakam/generals-bots/commit/8af020e362acf016c7079ce3bc96d6459e2b470e))
+* Update complete example ([e588cfa](https://github.com/strakam/generals-bots/commit/e588cfaff1056bbbbfb62b76846195936dc11b52))
+
+
+### 🛠️ Refactor
+
+* Align observations more with generalsio ([0c80b93](https://github.com/strakam/generals-bots/commit/0c80b9392c14bdd220406aa604d0eaa9a7a6326e))
+* Codebase combing and docs update ([12f194c](https://github.com/strakam/generals-bots/commit/12f194c2a3c905000c38a913edbe82ffc40a0d0d))
+* Make Channels properties settable, progress on generalsio client ([f745832](https://github.com/strakam/generals-bots/commit/f7458323a967ec34bc2f57343deaea65f5023a1a))
+* Make Observation a standalone object ([ba6970a](https://github.com/strakam/generals-bots/commit/ba6970a847596159ef362fd169a2dea0a449cd7c))
+
+
+### Documentation
+
+* **generalsio:** Update docs with deployment comments ([48b608d](https://github.com/strakam/generals-bots/commit/48b608d5512e91e8a8b9d3d1836ab67d98ebec1f))
+
+## [1.0.0](https://github.com/strakam/generals-bots/compare/v0.5.1...v1.0.0) (2024-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rename repository ([#89](https://github.com/strakam/generals-bots/issues/89))
+
+### 🚀 Features
+
+* Add new registry system ([faeffe9](https://github.com/strakam/generals-bots/commit/faeffe95b69eb37964ce00777e0be15c59b16559))
+* Add normalization wrapper ([74e447a](https://github.com/strakam/generals-bots/commit/74e447addb4802e235a45286357edeb9d0e559be))
+* Add observation as image wrapper ([34666c3](https://github.com/strakam/generals-bots/commit/34666c30b144fb6cea480333ac8200cbc55a1a33))
+* Add RemoveActionMaskWrapper ([3f590fe](https://github.com/strakam/generals-bots/commit/3f590fe2181d9b21bbd9df4cab5cb02d69defdf1))
+* Finish registry system ([977dec5](https://github.com/strakam/generals-bots/commit/977dec5d8f4df3fe671a8aa0e46dfc49935debd1))
+* Rename repository ([#89](https://github.com/strakam/generals-bots/issues/89)) ([c85364e](https://github.com/strakam/generals-bots/commit/c85364eb84d0b21cb4c3932002a2375d07b01c43))
+
+
+### 🐛 Bug Fixes
+
+* Add ABC baseclass to abstrat classes so that they cannot be instantiated ([f1991fb](https://github.com/strakam/generals-bots/commit/f1991fbce30fb62550c0b37a8174129f49dc32c4))
+* Add missing requirements ([8c63062](https://github.com/strakam/generals-bots/commit/8c63062b1ca60591e35f36d368eb28da4339aec3))
+* Apply precommit ([8ae653f](https://github.com/strakam/generals-bots/commit/8ae653f9db185bc004bd2459c6a0125ed27d4742))
+* Apply precommit ([5798a74](https://github.com/strakam/generals-bots/commit/5798a74f929adbff6b8bcad65d548377576729bd))
+* Fix seeding for gym v1.0.0 ([c283488](https://github.com/strakam/generals-bots/commit/c283488e780e0416821f57957ff62fa443f58a49))
+* Import types from gymnasium.core ([5fbdc17](https://github.com/strakam/generals-bots/commit/5fbdc173872d858a6c61b04c6e3dde6b2524ae80))
+* New seed handling since gym v1.0.0 ([7ff6ed8](https://github.com/strakam/generals-bots/commit/7ff6ed82d7fec4cc04a27dd32fb5b8119d8dfe61))
+* New seed handling since gym v1.0.0 ([1e79af3](https://github.com/strakam/generals-bots/commit/1e79af38ad8d8ec992d0d262d12118c561f37038))
+
+
+### 🛠️ Refactor
+
+* Add abstract command property to event handlers ([cde3f45](https://github.com/strakam/generals-bots/commit/cde3f45a8e2106ef544258371e881450ddbad36a))
+* Add Channels class ([40f70bc](https://github.com/strakam/generals-bots/commit/40f70bcbb83a98fbc50f0de6c5187ef3a9c040a4))
+* Add Enums for keybindings ([0e98e1f](https://github.com/strakam/generals-bots/commit/0e98e1f866392b7629ae398de271fae5f45c5cb0))
+* Add EventHandler static constroctor ([252020d](https://github.com/strakam/generals-bots/commit/252020d9efe7a50a0fb09e51a5209a1c3f711b92))
+* Add FoV toggle to all modes ([a2afa3b](https://github.com/strakam/generals-bots/commit/a2afa3b0b999de930a16a6d624bd2290342e4a04))
+* Add GuiMode enum ([6b2e295](https://github.com/strakam/generals-bots/commit/6b2e295d60494558ed3e6f3a13366ddcbc9ef881))
+* Add strategy pattern for event handlers ([7a9c526](https://github.com/strakam/generals-bots/commit/7a9c526a1380be3646b01bb4bf610b870a3f6585))
+* Add types in renderer ([bc3f7b0](https://github.com/strakam/generals-bots/commit/bc3f7b0df8cd1f67cd2e39f730e30b57b26b0690))
+* additional fix ([7a9c526](https://github.com/strakam/generals-bots/commit/7a9c526a1380be3646b01bb4bf610b870a3f6585))
+* Additional include to fix crashing ([1dc144a](https://github.com/strakam/generals-bots/commit/1dc144af6479508331df4534de6943a0d3a20a73))
+* Better check for replay commands handling ([557e97a](https://github.com/strakam/generals-bots/commit/557e97af6c6e1eb98a3326cc4dec6c039540489b))
+* Create CommonEnvironment that is subclassed ([5899908](https://github.com/strakam/generals-bots/commit/5899908746ec7245b5bef94a89fb1ca406656bfe))
+* Fix direction types ([a4713b0](https://github.com/strakam/generals-bots/commit/a4713b0d8f31be3b0e366a62f3458645ec31d00f))
+* Fix referencing wrong variables ([566b586](https://github.com/strakam/generals-bots/commit/566b58612fde07d19143e6510e432bb430cbcc1c))
+* Fix some naming stuff ([acf8fd5](https://github.com/strakam/generals-bots/commit/acf8fd5f2729f71a2af07ba3f912e6dd77550432))
+* Fix some observation space mismatches ([d67dbbf](https://github.com/strakam/generals-bots/commit/d67dbbf2d5015241b265ac729e5ddfd44a907ce5))
+* Fix wrong class initialization in handlers ([7a9c526](https://github.com/strakam/generals-bots/commit/7a9c526a1380be3646b01bb4bf610b870a3f6585))
+* handle quit better ([7a9c526](https://github.com/strakam/generals-bots/commit/7a9c526a1380be3646b01bb4bf610b870a3f6585))
+* Improve code style ([38b0266](https://github.com/strakam/generals-bots/commit/38b0266f60eb830f1bf32913dfec77c1481b0aba))
+* Improve handle events ([4258b79](https://github.com/strakam/generals-bots/commit/4258b79a607e8baa76c25279df9bd15202ebbbe6))
+* Include enums, remove unused things ([3aafe7f](https://github.com/strakam/generals-bots/commit/3aafe7fb84d1f8f587b9aea2aef9ed6f524bf2f3))
+* Instantiate event handler only once on GUI creation ([4921188](https://github.com/strakam/generals-bots/commit/49211883b640c05ceb47b711e4c7a0f7f4a8d42e))
+* little fix ([7a9c526](https://github.com/strakam/generals-bots/commit/7a9c526a1380be3646b01bb4bf610b870a3f6585))
+* Make default default reward methods static ([32e8cf7](https://github.com/strakam/generals-bots/commit/32e8cf7daf73199027f2d802d1a580b85c31fee2))
+* Make env more aligned from RL practitioner perspective ([df3e36e](https://github.com/strakam/generals-bots/commit/df3e36e1d3ef03aa90af5710de55611a11622bd7))
+* Remake folder structure ([722b1e9](https://github.com/strakam/generals-bots/commit/722b1e9d2d2309cb8fa18e75dc3509e57c889bd8))
+* Remove unused imports ([61f276c](https://github.com/strakam/generals-bots/commit/61f276cd36d07dc4cfcd0cd28b8ea1466b011dd3))
+* Remove unused mode attribute ([aaa68eb](https://github.com/strakam/generals-bots/commit/aaa68eba2343a0dbfcc5bf4f6f82923c9515e2ab))
+* Rename Observation item visibile_cells to visible_cells ([aa196ac](https://github.com/strakam/generals-bots/commit/aa196acf14a99c2648b46d590c4dbed114534f91))
+* Restructure files ([03465b8](https://github.com/strakam/generals-bots/commit/03465b801743e0c38aed5d7067f70e86acf809a4))
+* Use match clause in grid setter ([c6efed0](https://github.com/strakam/generals-bots/commit/c6efed02076bac7a7db93b49f285db4e19a96af7))
+
 ## [0.5.1](https://github.com/strakam/Generals-RL/compare/v0.5.0...v0.5.1) (2024-10-01)
 
 
