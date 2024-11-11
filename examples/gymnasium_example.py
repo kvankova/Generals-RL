@@ -17,3 +17,10 @@ env.close()
 
 def meow():
     pass
+
+# code_embedder:meow2 start
+# Run the game
+env.reset() #viu 2
+env.render()
+env.close()
+# code_embedder:meow2 end

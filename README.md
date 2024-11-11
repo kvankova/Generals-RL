@@ -56,6 +56,48 @@ The example loop for running the game looks like this
 def meow():
     pass
 ```
+```python:examples/gymnasium_example.py:s:meow
+# Run the game
+env.reset()
+env.render()
+env.close()
+```
+```python:examples/gymnasium_example.py:s:meow2
+# Run the game
+env.reset() #viu 2
+env.render()
+env.close()
+```
+
+```python:examples/gymnasium_example.py
+import gymnasium as gym
+
+from generals.agents import RandomAgent, ExpanderAgent
+
+# Initialize agents
+agent = RandomAgent()
+npc = ExpanderAgent()
+
+# Create environment
+env = gym.make("gym-generals-v0", agent=agent, npc=npc, render_mode="human")
+# code_embedder:meow start
+# Run the game
+env.reset()
+env.render()
+env.close()
+# code_embedder:meow end
+
+def meow():
+    pass
+
+# code_embedder:meow2 start
+# Run the game
+env.reset() #viu 2
+env.render()
+env.close()
+# code_embedder:meow2 end
+
+```
 
 > [!TIP]
 > Check out [Wiki](https://github.com/strakam/generals-bots/wiki) for more commented examples to get a better idea on how to start 🤗.
