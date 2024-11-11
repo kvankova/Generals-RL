@@ -16,7 +16,7 @@ repos:
     hooks:
       - id: code-embedder
         name: Code embedder
-        entry: poetry run code-embedder --log-level INFO
+        entry: poetry run code-embedder
         language: system
 
       - id: ruff-linter
