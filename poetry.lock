@@ -174,13 +174,13 @@ files = [
 
 [[package]]
 name = "code-embedder"
-version = "0.5.2.dev5"
+version = "0.5.2.dev8"
 description = "Embed python code from script to markdown"
 optional = false
 python-versions = "<4.0,>=3.11"
 files = [
-    {file = "code_embedder-0.5.2.dev5-py3-none-any.whl", hash = "sha256:adaf57a83bea77713f94201771274579f90020a484fb6aa9f8a84fac161f7493"},
-    {file = "code_embedder-0.5.2.dev5.tar.gz", hash = "sha256:15f882e83894b0861866264fb9b123ce3c37f0b3e1aa16a3b3a2fd8c9dd1e554"},
+    {file = "code_embedder-0.5.2.dev8-py3-none-any.whl", hash = "sha256:dee0c415b83ac4d4adba2aa9e09aef0e1046dbade050e98837948b15af957d5e"},
+    {file = "code_embedder-0.5.2.dev8.tar.gz", hash = "sha256:f0616f62f63a856835b7c58e205723634ee0446de56fabaaa00d5ba6df3d4d77"},
 ]
 
 [package.dependencies]
@@ -989,4 +989,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "993b0f6c5eb81125db079aaf5995b4f416cf734eeb47eca3c78908423c5c3856"
+content-hash = "7c5088b5f0076327c12d13b51c753165f1ac7e0968c392bfd190f4bdfbdf4baf"

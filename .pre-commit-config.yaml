@@ -17,7 +17,7 @@ repos:
       - id: code-embedder
         name: Code embedder
         entry: poetry run code-embedder
-        language: system
+        language: python
 
       - id: ruff-linter
         name: Ruff linter
