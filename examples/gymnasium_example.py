@@ -14,3 +14,6 @@ env.reset()
 env.render()
 env.close()
 # code_embedder:meow end
+
+def meow():
+    pass

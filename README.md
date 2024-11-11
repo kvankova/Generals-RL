@@ -52,11 +52,9 @@ that has the signature explained in sections down below.
 
 ### Usage Example (🤸 Gymnasium)
 The example loop for running the game looks like this
-```python:examples/gymnasium_example.py:s:meow
-# Run the game
-env.reset()
-env.render()
-env.close()
+```python:examples/gymnasium_example.py:o:meow
+def meow():
+    pass
 ```
 
 > [!TIP]
