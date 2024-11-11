@@ -11,11 +11,6 @@ agents = {
     expander.id: expander,
 }
 
-
-def meow():
-    pass
-
-ksksks
 # Create environment
 env = PettingZooGenerals(agents=agents, render_mode="human")
 observations, info = env.reset()
